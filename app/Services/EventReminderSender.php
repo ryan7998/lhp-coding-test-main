@@ -10,7 +10,7 @@ class EventReminderSender
 {
     public function sendDueReminders(): int
     {
-        $now = now()->timestamp;
+        $now = (int) now()->timestamp;
 
         return $this->sendWindow(
             'reminder_3_days_sent_at',

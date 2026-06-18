@@ -113,7 +113,7 @@ class EventController extends Controller
     }
 
     /**
-     * @return array{0: LengthAwarePaginator, 1: array{ms: int, bytes: int}}
+     * @return array{0: LengthAwarePaginator<int, Event>, 1: array{ms: int, bytes: int}}
      */
     private function loadListing(Request $request): array
     {
@@ -150,7 +150,7 @@ class EventController extends Controller
     {
         $parsed = CarbonImmutable::parse($date, $timezone);
 
-        return ($endOfDay ? $parsed->endOfDay() : $parsed->startOfDay())
+        return (int) ($endOfDay ? $parsed->endOfDay() : $parsed->startOfDay())
             ->setTimezone('UTC')
             ->timestamp;
     }
@@ -163,7 +163,7 @@ class EventController extends Controller
         EventImageResolver $images,
         EventLocationResolver $locations,
     ): array {
-        $payload = is_array($event->payload) ? $event->payload : [];
+        $payload = $event->payload;
         $resolved = $locations->resolve($event->latitude, $event->longitude);
         $city = $event->city ?: $resolved['city'];
         $country = $event->country ?: $resolved['country'];
