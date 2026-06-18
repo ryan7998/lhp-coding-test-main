@@ -149,10 +149,11 @@ class EventController extends Controller
     private function dateBoundary(string $date, DateTimeZone $timezone, bool $endOfDay): int
     {
         $parsed = CarbonImmutable::parse($date, $timezone);
-
-        return (int) ($endOfDay ? $parsed->endOfDay() : $parsed->startOfDay())
+        $boundary = ($endOfDay ? $parsed->endOfDay() : $parsed->startOfDay())
             ->setTimezone('UTC')
             ->timestamp;
+
+        return (int) $boundary;
     }
 
     /**
