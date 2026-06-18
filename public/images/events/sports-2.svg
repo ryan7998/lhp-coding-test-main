@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Sports scoreboard">
+  <rect width="640" height="360" fill="#e0f2fe"/>
+  <rect x="116" y="64" width="408" height="190" rx="16" fill="#0f172a"/>
+  <rect x="154" y="102" width="132" height="92" rx="8" fill="#1d4ed8"/>
+  <rect x="354" y="102" width="132" height="92" rx="8" fill="#dc2626"/>
+  <rect x="196" y="126" width="48" height="44" rx="6" fill="#f8fafc"/>
+  <rect x="396" y="126" width="48" height="44" rx="6" fill="#f8fafc"/>
+  <rect x="268" y="216" width="104" height="16" rx="5" fill="#facc15"/>
+  <path d="M194 302h252" stroke="#334155" stroke-width="18" stroke-linecap="round"/>
+</svg>

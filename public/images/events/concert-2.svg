@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Live concert crowd">
+  <rect width="640" height="360" fill="#18181b"/>
+  <rect x="72" y="72" width="496" height="120" rx="10" fill="#4c1d95"/>
+  <path d="M102 190h436v34H102z" fill="#0f172a"/>
+  <path d="M130 82h380v98H130z" fill="#7c3aed"/>
+  <path d="M180 174l62-76 48 54 36-32 90 54z" fill="#f8fafc" opacity=".92"/>
+  <g fill="#f97316">
+    <circle cx="126" cy="282" r="17"/><circle cx="198" cy="288" r="22"/><circle cx="282" cy="276" r="18"/>
+    <circle cx="360" cy="286" r="23"/><circle cx="442" cy="276" r="17"/><circle cx="514" cy="288" r="21"/>
+  </g>
+  <path d="M94 326h452" stroke="#f8fafc" stroke-width="16" stroke-linecap="round" opacity=".75"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Workshop tools and notes">
+  <rect width="640" height="360" fill="#f1f5f9"/>
+  <rect x="88" y="72" width="180" height="224" rx="16" fill="#ffffff"/>
+  <rect x="126" y="112" width="104" height="14" rx="4" fill="#334155"/>
+  <rect x="126" y="150" width="88" height="14" rx="4" fill="#94a3b8"/>
+  <rect x="126" y="188" width="116" height="14" rx="4" fill="#94a3b8"/>
+  <rect x="126" y="226" width="72" height="14" rx="4" fill="#94a3b8"/>
+  <path d="M336 244l132-132 50 50-132 132h-50z" fill="#0ea5e9"/>
+  <path d="M470 110l30-30 60 60-30 30z" fill="#0369a1"/>
+  <circle cx="392" cy="166" r="42" fill="#fde68a"/>
+</svg>

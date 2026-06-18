@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Hands-on workshop desk">
+  <rect width="640" height="360" fill="#fefce8"/>
+  <rect x="88" y="78" width="464" height="204" rx="18" fill="#a16207"/>
+  <rect x="128" y="116" width="198" height="128" rx="10" fill="#ffffff"/>
+  <rect x="352" y="116" width="148" height="96" rx="10" fill="#fef3c7"/>
+  <path d="M162 152h126M162 182h94M162 212h112" stroke="#ca8a04" stroke-width="14" stroke-linecap="round"/>
+  <path d="M372 146l42 42 66-76" fill="none" stroke="#16a34a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="192" y="300" width="256" height="22" rx="8" fill="#78350f"/>
+</svg>

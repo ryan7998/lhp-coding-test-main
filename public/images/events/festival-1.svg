@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Outdoor festival tents">
+  <rect width="640" height="360" fill="#eff6ff"/>
+  <rect y="242" width="640" height="118" fill="#65a30d"/>
+  <path d="M82 244l92-126 92 126z" fill="#f43f5e"/>
+  <path d="M210 244l92-150 92 150z" fill="#f59e0b"/>
+  <path d="M378 244l92-126 92 126z" fill="#06b6d4"/>
+  <rect x="132" y="244" width="84" height="48" fill="#be123c"/>
+  <rect x="270" y="244" width="64" height="48" fill="#b45309"/>
+  <rect x="428" y="244" width="84" height="48" fill="#0e7490"/>
+  <path d="M86 76c74 36 142 36 204 0 70 38 146 38 228 0" fill="none" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+</svg>

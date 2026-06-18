@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Concert stage lights">
+  <rect width="640" height="360" fill="#111827"/>
+  <rect x="0" y="250" width="640" height="110" fill="#0f766e"/>
+  <path d="M70 60h500l-50 190H120z" fill="#1f2937"/>
+  <path d="M160 245l70-170h40l-40 170zM380 245L340 75h40l100 170z" fill="#f59e0b" opacity=".88"/>
+  <rect x="178" y="196" width="284" height="52" rx="6" fill="#020617"/>
+  <circle cx="230" cy="218" r="20" fill="#ef4444"/>
+  <circle cx="320" cy="218" r="24" fill="#22c55e"/>
+  <circle cx="410" cy="218" r="20" fill="#38bdf8"/>
+  <path d="M94 312c70-42 126-42 168 0 44-42 96-42 156 0 42-30 86-30 132 0" fill="none" stroke="#f8fafc" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+</svg>

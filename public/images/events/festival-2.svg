@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Festival ferris wheel">
+  <rect width="640" height="360" fill="#fdf2f8"/>
+  <circle cx="220" cy="160" r="96" fill="none" stroke="#be185d" stroke-width="16"/>
+  <path d="M220 64v192M124 160h192M152 92l136 136M288 92L152 228" stroke="#be185d" stroke-width="10" stroke-linecap="round"/>
+  <path d="M178 316l42-156 42 156" fill="none" stroke="#831843" stroke-width="14" stroke-linecap="round"/>
+  <rect x="368" y="126" width="168" height="138" rx="12" fill="#f97316"/>
+  <path d="M368 126l84-62 84 62z" fill="#facc15"/>
+  <rect x="412" y="180" width="80" height="84" fill="#fed7aa"/>
+</svg>

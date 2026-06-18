@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventAttendeeController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,8 @@ Route::redirect('/', '/events')->name('home');
 
 Route::get('events', [EventController::class, 'index'])->name('events.index');
 Route::get('events/data', [EventController::class, 'data'])->name('events.data');
+Route::get('events/discovery-data', [EventController::class, 'discoveryData'])->name('events.discovery-data');
+Route::post('events/{event}/attendees', [EventAttendeeController::class, 'store'])->name('events.attendees.store');
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
 Route::inertia('events-visual-1', 'Events/VisualOne')->name('events.visual1');

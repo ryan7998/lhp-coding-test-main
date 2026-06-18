@@ -82,6 +82,14 @@ function applyFilters() {
     loadMore();
 }
 
+function openDatePicker(event: Event): void {
+    const input = event.currentTarget as HTMLInputElement & {
+        showPicker?: () => void;
+    };
+
+    input.showPicker?.();
+}
+
 const statusVariant = (status: string) => {
     switch (status) {
         case 'published':
@@ -142,10 +150,11 @@ onBeforeUnmount(() => observer?.disconnect());
                     id="from"
                     v-model="form.from"
                     type="date"
-                    class="h-9 rounded-md border border-input bg-background px-3 text-sm"
+                    class="h-9 rounded-md border border-input bg-background px-3 text-sm [color-scheme:light] dark:[color-scheme:dark]"
+                    @click="openDatePicker"
                 />
             </div>
-            <Button type="button" @click.prevent="aplyFilters">Filter</Button>
+            <Button type="button" @click.prevent="applyFilters">Filter</Button>
         </form>
 
         <div class="overflow-x-auto rounded-lg border">

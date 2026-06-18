@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Services\EventLocationResolver;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -102,7 +103,8 @@ class EventSeeder extends Seeder
 
         $typeWeights = $this->cumulativeWeights([20, 14, 22, 12, 12, 8, 8, 4]);
         $statusWeights = $this->cumulativeWeights([12, 70, 8, 10]);
-        $anchorCount = count(self::CITY_ANCHORS);
+        $anchors = EventLocationResolver::anchors();
+        $anchorCount = count($anchors);
 
         $remaining = $count;
         $done = 0;
@@ -117,9 +119,9 @@ class EventSeeder extends Seeder
                 $startsAt = mt_rand($startTime, $endTime);
                 $endsAt = $startsAt + mt_rand(3600, 3 * 24 * 3600);
 
-                $anchor = self::CITY_ANCHORS[mt_rand(0, $anchorCount - 1)];
-                $latitude = round($anchor[0] + (mt_rand(-500, 500) / 1000), 7);
-                $longitude = round($anchor[1] + (mt_rand(-500, 500) / 1000), 7);
+                $anchor = $anchors[mt_rand(0, $anchorCount - 1)];
+                $latitude = round($anchor['latitude'] + (mt_rand(-500, 500) / 1000), 7);
+                $longitude = round($anchor['longitude'] + (mt_rand(-500, 500) / 1000), 7);
 
                 $name = self::NAME_ADJECTIVES[array_rand(self::NAME_ADJECTIVES)]
                     .' '.self::NAME_THEMES[array_rand(self::NAME_THEMES)]
@@ -146,6 +148,10 @@ class EventSeeder extends Seeder
                     'created_time' => $startsAt,
                     'latitude' => $latitude,
                     'longitude' => $longitude,
+                    'city' => $anchor['city'],
+                    'country' => $anchor['country'],
+                    'country_code' => $anchor['country_code'],
+                    'timezone' => $anchor['timezone'],
                     'payload' => $payload,
                     'created_at' => $now,
                     'updated_at' => $now,
