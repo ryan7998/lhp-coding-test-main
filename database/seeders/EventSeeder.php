@@ -30,44 +30,11 @@ class EventSeeder extends Seeder
 
     private const NAME_FORMATS = ['Festival', 'Meetup', 'Conference', 'Summit', 'Workshop', 'Expo', 'Showcase', 'Gala', 'Jam', 'Retreat', 'Fair', 'Night', 'Tour', 'Symposium', 'Block Party'];
 
-    /**
-     * Anchor coordinates [lat, lng] for major cities across the US, Canada,
-     * Mexico and Europe, plus a few global hubs. Each row is jittered around
-     * one of these anchors.
-     */
-    private const CITY_ANCHORS = [
-        // United States
-        [40.7128, -74.0060], [34.0522, -118.2437], [41.8781, -87.6298], [29.7604, -95.3698],
-        [33.4484, -112.0740], [39.9526, -75.1652], [29.4241, -98.4936], [32.7157, -117.1611],
-        [32.7767, -96.7970], [37.3382, -121.8863], [30.2672, -97.7431], [37.7749, -122.4194],
-        [47.6062, -122.3321], [39.7392, -104.9903], [42.3601, -71.0589], [36.1699, -115.1398],
-        [25.7617, -80.1918], [33.7490, -84.3880], [38.9072, -77.0369], [36.1627, -86.7816],
-        [45.5152, -122.6784], [29.9511, -90.0715],
-        // Canada
-        [43.6532, -79.3832], [45.5019, -73.5674], [49.2827, -123.1207], [51.0447, -114.0719],
-        [45.4215, -75.6972], [53.5461, -113.4938], [46.8139, -71.2080], [49.8951, -97.1384],
-        // Mexico
-        [19.4326, -99.1332], [20.6597, -103.3496], [25.6866, -100.3161], [19.0414, -98.2063],
-        [32.5149, -117.0382], [21.1619, -86.8515], [20.9674, -89.5926],
-        // Europe
-        [51.5074, -0.1278], [48.8566, 2.3522], [52.5200, 13.4050], [40.4168, -3.7038],
-        [41.9028, 12.4964], [52.3676, 4.9041], [41.3851, 2.1734], [48.1351, 11.5820],
-        [45.4642, 9.1900], [48.2082, 16.3738], [50.0755, 14.4378], [38.7223, -9.1393],
-        [53.3498, -6.2603], [55.6761, 12.5683], [59.3293, 18.0686], [59.9139, 10.7522],
-        [60.1699, 24.9384], [50.8503, 4.3517], [47.3769, 8.5417], [52.2297, 21.0122],
-        [47.4979, 19.0402], [37.9838, 23.7275], [45.7640, 4.8357], [53.5511, 9.9937],
-        [53.4808, -2.2426], [55.9533, -3.1883], [50.1109, 8.6821], [50.0647, 19.9450],
-        [41.1579, -8.6291], [40.8518, 14.2681],
-        // A few global hubs
-        [35.6762, 139.6503], [37.5665, 126.9780], [1.3521, 103.8198], [-33.8688, 151.2093],
-        [-37.8136, 144.9631], [25.2048, 55.2708], [-23.5505, -46.6333], [-34.6037, -58.3816],
-    ];
-
     public function run(): void
     {
-        $rows = (int) (env('SEED_ROWS', 1_250_000));
+        $rows = (int) config('seeding.rows', 1_250_000);
 
-        $this->command?->info("Seeding {$rows} events...");
+        $this->command->info("Seeding {$rows} events...");
 
         $start = microtime(true);
 
@@ -78,7 +45,7 @@ class EventSeeder extends Seeder
 
         $elapsed = round(microtime(true) - $start, 1);
         $rate = $elapsed > 0 ? round($rows / $elapsed) : $rows;
-        $this->command?->info("Done. {$rows} events in {$elapsed}s ({$rate} rows/s).");
+        $this->command->info("Done. {$rows} events in {$elapsed}s ({$rate} rows/s).");
     }
 
     /**
@@ -166,7 +133,7 @@ class EventSeeder extends Seeder
             $remaining -= $batchSize;
 
             if ($done % (self::CHUNK * 25) === 0 || $remaining === 0) {
-                $this->command?->getOutput()?->writeln("  inserted {$done}/{$count}");
+                $this->command->getOutput()->writeln("  inserted {$done}/{$count}");
             }
         }
     }
@@ -240,14 +207,14 @@ class EventSeeder extends Seeder
             'notes' => '',
         ];
 
-        $encoded = json_encode($payload);
+        $encoded = json_encode($payload, JSON_THROW_ON_ERROR);
         $pad = self::PAYLOAD_AVG_BYTES - strlen($encoded);
         if ($pad > 0) {
             $payload['notes'] = str_repeat('Lorem ipsum dolor sit amet consectetur adipiscing elit. ', (int) ceil($pad / 56));
             $payload['notes'] = substr($payload['notes'], 0, $pad);
         }
 
-        return json_encode($payload);
+        return json_encode($payload, JSON_THROW_ON_ERROR);
     }
 
     private function venueName(): string
@@ -266,13 +233,16 @@ class EventSeeder extends Seeder
     private function uuidv4(): string
     {
         $data = random_bytes(16);
-        $data[6] = chr((ord($data[6]) & 0x0f) | 0x40);
-        $data[8] = chr((ord($data[8]) & 0x3f) | 0x80);
+        $data[6] = chr((ord($data[6]) & 0x0F) | 0x40);
+        $data[8] = chr((ord($data[8]) & 0x3F) | 0x80);
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
 
-    /** @return array<int,int> */
+    /**
+     * @param  array<int,int>  $weights
+     * @return array<int,int>
+     */
     private function cumulativeWeights(array $weights): array
     {
         $cumulative = [];
@@ -289,6 +259,10 @@ class EventSeeder extends Seeder
     private function pick(array $cumulative): int
     {
         $total = end($cumulative);
+        if ($total === false) {
+            return 0;
+        }
+
         $roll = mt_rand(1, $total);
         foreach ($cumulative as $index => $threshold) {
             if ($roll <= $threshold) {

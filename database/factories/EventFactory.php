@@ -20,7 +20,11 @@ class EventFactory extends Factory
         $lat = fake()->latitude();
         $lng = fake()->longitude();
         $startsAt = fake()->numberBetween(strtotime('-1 year'), strtotime('+1 year'));
-        $location = (new EventLocationResolver())->resolve($lat, $lng);
+        $location = (new EventLocationResolver)->resolve($lat, $lng);
+        $name = fake()->words(3, true);
+        if (is_array($name)) {
+            $name = implode(' ', $name);
+        }
 
         return [
             'user_id' => User::factory(),
@@ -34,7 +38,7 @@ class EventFactory extends Factory
             'country_code' => $location['country_code'],
             'timezone' => $location['timezone'],
             'payload' => [
-                'name' => ucwords(fake()->words(3, true)),
+                'name' => ucwords($name),
                 'category' => $type,
                 'description' => fake()->sentence(18),
                 'venue' => ['name' => fake()->company(), 'capacity' => fake()->numberBetween(20, 50000)],
